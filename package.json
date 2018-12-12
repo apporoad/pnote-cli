@@ -1,0 +1,25 @@
+{
+  "name": "pnote-cli",
+  "version": "1.0.0",
+  "description": "cli for pnote",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apporoad/pnote-cli.git"
+  },
+  "keywords": [
+    "pnote"
+  ],
+  "author": "apporoad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apporoad/pnote-cli/issues"
+  },
+  "homepage": "https://github.com/apporoad/pnote-cli#readme",
+  "dependencies": {
+    "requestify": "^0.2.5"
+  }
+}
