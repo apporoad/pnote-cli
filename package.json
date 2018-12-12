@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/apporoad/pnote-cli#readme",
   "dependencies": {
+    "history.node": "^1.0.0",
     "requestify": "^0.2.5"
   }
 }
