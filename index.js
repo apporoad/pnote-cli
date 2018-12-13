@@ -1,40 +1,64 @@
 
 var requestify = require('requestify')
+var cc =require('cli.config.js').system('pnote').default(require('./config.json'))
+
+
+
+String.prototype.trim = function (char, type) {
+    if (char) {
+        if (type == 'left') {
+            return this.replace(new RegExp('^\\'+char+'+', 'g'), '');
+        } else if (type == 'right') {
+            return this.replace(new RegExp('\\'+char+'+$', 'g'), '');
+        }
+        return this.replace(new RegExp('^\\'+char+'+|\\'+char+'+$', 'g'), '');
+    }
+    return this.replace(/^\s+|\s+$/g, '');
+};
 
 
 exports.get = path=>{
-    return new Promise((r,j)=>{
-        // path 
-
-        requestify.post('http://localhost:8880/', { })
-            .then(function(response) {
-                r(response.body)
-                console.log(response.body)
-            });
-
-    })
+    // path 
+    if(!path)
+        path=""
+    var rPath = cc.get("site").trim('/','right') + "/" + path.trim('/','left')
+    //console.log(rPath)
+    requestify.post(rPath, { })
+        .then(function(response) {
+            console.log(response.body)
+        });
 }
 
 exports.set = (path,text) =>{
-    
+    var rPath = cc.get("site").trim('/','right') + "/save"
+    var pp =  '/'+ path.trim('/','left')
+
+    //console.log(rPath)
+    //console.log(pp)
+    requestify.post(rPath, { path: pp, text: text })
+	.then(function(response) {
+        //console.log(response.body)
+        if(response.body){
+            console.log("set success!")
+        }
+    });
 }
 
 
-requestify.post('http://localhost:8880/save', { path: '/', text: '1sdfr23r2311111111111aaaaaaaaaaaa32323n\n' })
-	.then(function(response) {
-		// Get the response body (JSON parsed or jQuery object for XMLs)
-		//response.getBody();
-		
-		// Get the raw response body
-		console.log(response.body)
-    });
+exports.ls = ()=>{
+    var rPath = cc.get("site").trim('/','right') + "/list?isAPI=true"
+    //console.log(rPath)
     
+    requestify.get(rPath, { })
+	.then(function(response) {
+        //console.log(response.body)
+        if(response.body){
+            //console.log(response.body)
 
-    // requestify.post('http://localhost:8880/', { })
-	// .then(function(response) {
-	// 	// Get the response body (JSON parsed or jQuery object for XMLs)
-	// 	//response.getBody();
-		
-	// 	// Get the raw response body
-	// 	console.log(response.body)
-    // });
+            JSON.parse(response.body).forEach(element => {
+                //console.log(element)
+                console.log(element["path"])
+            });
+        }
+    });
+}
