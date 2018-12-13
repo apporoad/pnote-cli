@@ -11,4 +11,15 @@ npm i -g pnote-cli.js
 pnote -h
 pn -h
 
+//your can 
+pn
+
+pn hello world
+
+pn hello
+
+pn hello "hello good day"
+
+pn hello
+
 ```
