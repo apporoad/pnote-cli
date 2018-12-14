@@ -10,3 +10,6 @@ var pnote = require('./index')
 //pnote.get('/test')
 
 //pnote.ls()
+
+
+//pnote.open('laopo')

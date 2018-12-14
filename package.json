@@ -1,6 +1,6 @@
 {
   "name": "pnote-cli.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "cli for pnote",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "cli.config.js": "^1.0.2",
     "commander": "^2.19.0",
     "history.node": "^1.0.0",
+    "open": "0.0.5",
     "requestify": "^0.2.5"
   },
   "bin": {

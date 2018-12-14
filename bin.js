@@ -29,9 +29,11 @@ var program = commander.usage('\r\n'
     +'[path] [yourFilePath] -f\r\n'
     +'ls\r\n'
     +'list\r\n'
-    +'config -h')
+    +'config -h\r\n'
+    +'[path] -o')
     .option('-f --file', 'read text from a file')
     .option('-e --encode [utf-8]','read file encoding','utf-8')
+    .option('-o --open', 'open path in web browser')
     .parse(process.argv)
 
 var firstCommand = program.args.length>0 ? program.args[0] : '/'
@@ -70,9 +72,15 @@ switch(firstCommand){
             else{
                 pnote.set(program.args[0],program.args[1])
             }
+            if(program.open){
+                pnote.open(program.args[0])
+            }
         }
         else{
             pnote.get(firstCommand)
+            if(program.open){
+                pnote.open(firstCommand)
+            }
         }
         break
 }

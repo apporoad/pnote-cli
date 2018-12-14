@@ -1,6 +1,7 @@
 
 var requestify = require('requestify')
 var cc =require('cli.config.js').system('pnote').default(require('./config.json'))
+var open = require('open')
 
 
 
@@ -42,6 +43,14 @@ exports.set = (path,text) =>{
             console.log("set success!")
         }
     });
+}
+
+exports.open = path =>{
+    if(!path)
+        path=""
+    var rPath = cc.get("site").trim('/','right') + "/" + path.trim('/','left')
+    open(rPath)
+
 }
 
 
